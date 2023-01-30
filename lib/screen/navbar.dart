@@ -1,4 +1,5 @@
 import 'package:copofficial_app/screen/home_screen.dart';
+import 'package:copofficial_app/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -19,6 +20,9 @@ class _NavScreenState extends State<NavScreen> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const SettingsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
