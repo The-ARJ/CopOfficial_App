@@ -1,9 +1,11 @@
+import 'package:copofficial_app/app/theme_service.dart';
 import 'package:copofficial_app/screen/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -13,15 +15,45 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _notificationsEnabled = true;
-  bool _biometricsEnabled = true;
+  bool light0 = true;
+  bool light1 = true;
+  bool light2 = true;
+  final MaterialStateProperty<Icon?> appearance =
+      MaterialStateProperty.resolveWith<Icon?>(
+    (Set<MaterialState> states) {
+      if (states.contains(MaterialState.selected)) {
+        return const Icon(Icons.dark_mode);
+      }
+      return const Icon(Icons.sunny);
+    },
+  );
 
+  final MaterialStateProperty<Icon?> notification =
+      MaterialStateProperty.resolveWith<Icon?>(
+    (Set<MaterialState> states) {
+      if (states.contains(MaterialState.selected)) {
+        return const Icon(Icons.notifications_active);
+      }
+      return const Icon(Icons.notifications_off);
+    },
+  );
+  final MaterialStateProperty<Icon?> biometric =
+      MaterialStateProperty.resolveWith<Icon?>(
+    (Set<MaterialState> states) {
+      if (states.contains(MaterialState.selected)) {
+        return const Icon(Icons.fingerprint);
+      }
+      return const Icon(Icons.fingerprint);
+    },
+  );
   _showalert() {
     showSnackbar(context, 'Link copied to clipboard!', Colors.teal);
   }
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
+
     return Scaffold(
         // backgroundColor: Colors.white,
         appBar: AppBar(
@@ -63,19 +95,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: ListTile(
                       leading: const Icon(
                         Icons.color_lens,
-                        color: Colors.white,
                       ),
                       title: Text("Appearance",
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    color: Colors.white,
-                                    // fontSize: responsiveHeight(context, 0.02, 0.04),
-                                  )),
-                      trailing: const Icon(Icons.arrow_forward_ios,
-                          color: Colors.white),
-                      onTap: () {
-                        // Navigate to appearance settings screen
-                      },
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              // fontSize: responsiveHeight(context, 0.02, 0.04),
+                              )),
+                      trailing: Switch(
+                        thumbIcon: appearance,
+                        value: themeProvider.darkTheme,
+                        onChanged: (value) => themeProvider.darkTheme = value,
+                      ),
                     ),
                   ),
                   Container(
@@ -84,53 +113,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: ListTile(
                       leading: const Icon(
                         Icons.notifications_active,
-                        color: Colors.white,
                       ),
                       title: Text(
                         "Notification",
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: Colors.white,
-                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
-                                ),
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            // fontSize: responsiveHeight(context, 0.02, 0.04),
+                            ),
                       ),
-                      trailing: InkWell(
-                        onTap: () {
+                      trailing: Switch(
+                        thumbIcon: notification,
+                        value: light1,
+                        onChanged: (bool value) {
                           setState(() {
-                            _notificationsEnabled = !_notificationsEnabled;
+                            light1 = value;
                           });
                         },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          width: 45,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            color: _notificationsEnabled
-                                ? Colors.teal
-                                : Colors.grey,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Stack(
-                            children: [
-                              AnimatedPositioned(
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.easeInOut,
-                                left: _notificationsEnabled ? 25 : 0,
-                                right: _notificationsEnabled ? 0 : 25,
-                                top: 0,
-                                bottom: 0,
-                                child: Container(
-                                  width: 30,
-                                  height: 20,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
                       ),
                     ),
                   ),
@@ -140,52 +137,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: ListTile(
                       leading: const Icon(
                         Icons.fingerprint,
-                        color: Colors.white,
                       ),
                       title: Text(
                         "Biometric",
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: Colors.white,
-                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
-                                ),
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            // fontSize: responsiveHeight(context, 0.02, 0.04),
+                            ),
                       ),
-                      trailing: InkWell(
-                        onTap: () {
+                      trailing: Switch(
+                        thumbIcon: biometric,
+                        value: light0,
+                        onChanged: (bool value) {
                           setState(() {
-                            _biometricsEnabled = !_biometricsEnabled;
+                            light0 = value;
                           });
                         },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          width: 45,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            color:
-                                _biometricsEnabled ? Colors.teal : Colors.grey,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Stack(
-                            children: [
-                              AnimatedPositioned(
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.easeInOut,
-                                left: _biometricsEnabled ? 25 : 0,
-                                right: _biometricsEnabled ? 0 : 25,
-                                top: 0,
-                                bottom: 0,
-                                child: Container(
-                                  width: 30,
-                                  height: 20,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
                       ),
                     ),
                   ),
@@ -195,18 +161,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: ListTile(
                       leading: const Icon(
                         Icons.info,
-                        color: Colors.white,
                       ),
                       title: Text(
                         "About",
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: Colors.white,
-                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
-                                ),
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            // fontSize: responsiveHeight(context, 0.02, 0.04),
+                            ),
                       ),
-                      trailing: const Icon(Icons.arrow_forward_ios,
-                          color: Colors.white),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                      ),
                       onTap: () {
                         Navigator.pushNamed(context, '/AboutScreen');
                         // Navigate to about screen
@@ -219,18 +183,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: ListTile(
                       leading: const Icon(
                         Icons.question_answer,
-                        color: Colors.white,
                       ),
                       title: Text(
                         "Help and FAQs",
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: Colors.white,
-                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
-                                ),
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            // fontSize: responsiveHeight(context, 0.02, 0.04),
+                            ),
                       ),
-                      trailing: const Icon(Icons.arrow_forward_ios,
-                          color: Colors.white),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                      ),
                       onTap: () {
                         // Navigate to FAQ screen
                         Navigator.pushNamed(context, '/FAQScreen');
@@ -243,17 +205,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: ListTile(
                       leading: const Icon(
                         Icons.share,
-                        color: Colors.white,
                       ),
                       title: Text(
                         "Share",
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: Colors.white,
-                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
-                                ),
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            // fontSize: responsiveHeight(context, 0.02, 0.04),
+                            ),
                       ),
-                      trailing: const Icon(Icons.copy, color: Colors.white),
+                      trailing: const Icon(Icons.copy),
                       onTap: () {
                         Clipboard.setData(const ClipboardData(
                             text: "https://www.example.com"));
@@ -267,22 +226,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: ListTile(
                       leading: const Icon(
                         Icons.feedback,
-                        color: Colors.white,
                       ),
                       title: Text(
                         "Feedback",
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: Colors.white,
-                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
-                                ),
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            // fontSize: responsiveHeight(context, 0.02, 0.04),
+                            ),
                       ),
                       onTap: () {
                         // FeedbackDialog.show(context);
                         Navigator.pushNamed(context, '/FeedBack');
                       },
-                      trailing: const Icon(Icons.arrow_forward_ios,
-                          color: Colors.white),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                      ),
                     ),
                   ),
                   Container(
@@ -291,15 +248,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: ListTile(
                       leading: const Icon(
                         Icons.info,
-                        color: Colors.white,
                       ),
                       title: Text(
                         "More Info",
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: Colors.white,
-                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
-                                ),
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            // fontSize: responsiveHeight(context, 0.02, 0.04),
+                            ),
                       ),
                       onTap: () {
                         Dialogs.bottomMaterialDialog(
@@ -314,8 +268,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               text: 'Check For Update',
                               iconData: Icons.update,
                               color: Colors.teal,
-                              textStyle: const TextStyle(color: Colors.white),
-                              iconColor: Colors.white,
                             ),
                           ],
                         );
