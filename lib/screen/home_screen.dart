@@ -10,45 +10,44 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        appBar: AppBar(
+          title: const Text('Home'),
         ),
-      ),
-      floatingActionButton:
-          Consumer<ThemeService>(builder: (context, ThemeService theme, _) {
-        return FloatingActionButton(
-          // onPressed: _incrementCounter,
-          onPressed: () {
-            theme.toggletheme();
-          },
-          // tooltip: 'Increment',
-          child:  Icon(theme.darkTheme!?Icons.sunny:Icons.dark_mode),
-        );
-      }),
-    );
+        body: Center(
+            child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.lightbulb_rounded,
+              size: MediaQuery.of(context).size.width / 2,
+              color: themeProvider.darkTheme
+                  ? Theme.of(context).disabledColor
+                  : Colors.orangeAccent,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  themeProvider.darkTheme ? "Dark Theme" : "Light Theme",
+                  style: TextStyle(
+                      color: Theme.of(context).indicatorColor, fontSize: 20),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Switch(
+                  value: themeProvider.darkTheme,
+                  onChanged: (value) => themeProvider.darkTheme = value,
+                  activeColor: Theme.of(context).primaryColor,
+                )
+              ],
+            )
+          ],
+        )));
   }
 }

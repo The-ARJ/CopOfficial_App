@@ -12,20 +12,32 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  DarkThemeProvider themeProvider = DarkThemeProvider();
+
+  @override
+  void initState() {
+    super.initState();
+
+    getCurrentTheme();
+  }
+
+  void getCurrentTheme() async {
+    themeProvider.darkTheme = await themeProvider.myPreferences.getTheme();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ThemeService>(
-      create: (context) => ThemeService(),
-      child: Consumer(builder: (context, ThemeService theme, _) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'CopOfficial',
-          theme: theme.darkTheme! ? darkTheme : lightTheme,
-          routes: {
-            '/': (context) => const HomeScreen(),
+    return ChangeNotifierProvider(
+        create: (_) => themeProvider,
+        child: Consumer<DarkThemeProvider>(
+          builder: (context, value, child) {
+            return MaterialApp(
+              title: 'Flutter Demo',
+              theme: ThemeStyles.themeStatus(themeProvider.darkTheme, context),
+              debugShowCheckedModeBanner: false,
+              home: const HomeScreen(),
+            );
           },
-        );
-      }),
-    );
+        ));
   }
 }

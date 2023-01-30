@@ -1,32 +1,15 @@
+import 'package:copofficial_app/app/preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class ThemeService with ChangeNotifier {
-  SharedPreferences? sharedPreferences;
-  bool? darkTheme;
-  static String key = "key";
-  ThemeService() {
-    darkTheme = false;
-    loadSp();
-  }
-  initSp() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-  }
+class DarkThemeProvider with ChangeNotifier {
+  MyPreferences myPreferences = MyPreferences();
+  bool _darkTheme = false;
 
-  saveSp() async {
-    await initSp();
-    darkTheme = await sharedPreferences!.setBool(key, darkTheme!);
-  }
+  bool get darkTheme => _darkTheme;
 
-  loadSp() async {
-    await initSp();
-    darkTheme = sharedPreferences!.getBool(key);
-    notifyListeners();
-  }
-
-  toggletheme() {
-    darkTheme = !darkTheme!;
-    saveSp();
+  set darkTheme(bool value) {
+    _darkTheme = value;
+    myPreferences.setTheme(value);
     notifyListeners();
   }
 }
