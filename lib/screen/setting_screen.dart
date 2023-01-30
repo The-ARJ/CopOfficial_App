@@ -1,3 +1,4 @@
+import 'package:copofficial_app/screen/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,9 +16,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _notificationsEnabled = true;
   bool _biometricsEnabled = true;
 
-  // _showalert() {
-  //   showSnackbar(context, 'Link copied to clipboard!', Colors.teal);
-  // }
+  _showalert() {
+    showSnackbar(context, 'Link copied to clipboard!', Colors.teal);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -256,7 +257,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       onTap: () {
                         Clipboard.setData(const ClipboardData(
                             text: "https://www.example.com"));
-                        // _showalert();
+                        _showalert();
                       },
                     ),
                   ),
