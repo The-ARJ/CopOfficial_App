@@ -15,39 +15,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final themeProvider = Provider.of<DarkThemeProvider>(context);
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Home'),
-        ),
-        body: Center(
-            child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              Icons.lightbulb_rounded,
-              size: MediaQuery.of(context).size.width / 2,
-              color: themeProvider.darkTheme
-                  ? Theme.of(context).disabledColor
-                  : Colors.orangeAccent,
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  themeProvider.darkTheme ? "Dark Theme" : "Light Theme",
-                  style: TextStyle(
-                      color: Theme.of(context).indicatorColor, fontSize: 20),
-                ),
-                const SizedBox(
-                  width: 16,
-                ),
-                Switch(
-                  value: themeProvider.darkTheme,
-                  onChanged: (value) => themeProvider.darkTheme = value,
-                  activeColor: Theme.of(context).primaryColor,
-                )
-              ],
-            )
-          ],
-        )));
+      appBar: AppBar(
+        title: const Text('Home'),
+      ),
+    );
   }
 }

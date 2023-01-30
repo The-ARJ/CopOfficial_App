@@ -1,3 +1,4 @@
+import 'package:copofficial_app/app/theme_service.dart';
 import 'package:copofficial_app/screen/home_screen.dart';
 import 'package:copofficial_app/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
+import 'package:provider/provider.dart';
 
 class NavScreen extends StatefulWidget {
   const NavScreen({super.key});
@@ -26,6 +28,8 @@ class _NavScreenState extends State<NavScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
+
     return WillPopScope(
       onWillPop: () async {
         bool willLeave = false;
@@ -33,7 +37,7 @@ class _NavScreenState extends State<NavScreen> {
 
         await Dialogs.materialDialog(
             msg: 'Are you sure ? you want to exit',
-            title: "Exit FoodMobie",
+            title: "Exit CopOfficial",
             color: Colors.white,
             context: context,
             actions: [
@@ -42,7 +46,6 @@ class _NavScreenState extends State<NavScreen> {
                   Navigator.of(context).pop();
                 },
                 text: 'Cancel',
-                color: Colors.teal,
                 iconData: Icons.cancel_outlined,
                 textStyle: const TextStyle(color: Colors.white),
                 iconColor: Colors.white,
@@ -67,12 +70,12 @@ class _NavScreenState extends State<NavScreen> {
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
         bottomNavigationBar: Container(
-          decoration: const BoxDecoration(
-            color: Color.fromRGBO(61, 64, 64, 1),
-            borderRadius: BorderRadius.vertical(
+          decoration: BoxDecoration(
+            color: themeProvider.darkTheme ? Colors.black : Colors.white,
+            borderRadius: const BorderRadius.vertical(
               top: Radius.circular(15),
             ),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 25,
                 color: Colors.black45,
@@ -84,28 +87,29 @@ class _NavScreenState extends State<NavScreen> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
               child: GNav(
-                rippleColor: Colors.teal[300]!,
-                hoverColor: Colors.teal[100]!,
+                tabBorderRadius: 15,
+                rippleColor: const Color(0xFF4F51A6),
+                hoverColor: const Color(0xFF4F51A6),
                 gap: 8,
                 activeColor: Colors.white,
                 iconSize: 24,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 duration: const Duration(milliseconds: 200),
-                tabBackgroundColor: Colors.teal[300]!,
-                color: Colors.white,
+                tabBackgroundColor: const Color(0xFF4F51A6),
+                color: themeProvider.darkTheme ? Colors.white : Colors.black87,
                 tabs: const [
                   GButton(
                     icon: LineIcons.home,
                     text: 'Home',
                   ),
                   GButton(
-                    icon: LineIcons.alternateList,
-                    text: 'Reminder',
+                    icon: LineIcons.newspaper,
+                    text: 'News',
                   ),
                   GButton(
-                    icon: LineIcons.coffee,
-                    text: 'Recipes',
+                    icon: LineIcons.book,
+                    text: 'Statements',
                   ),
                   GButton(
                     icon: LineIcons.cog,

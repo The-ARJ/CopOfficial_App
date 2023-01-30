@@ -50,6 +50,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showSnackbar(context, 'Link copied to clipboard!', Colors.teal);
   }
 
+  _theme() {
+    showSnackbar(context, 'Dark theme applied', Colors.teal);
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<DarkThemeProvider>(context);
@@ -62,11 +66,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             'Settings',
             style: TextStyle(
               fontWeight: FontWeight.w500,
-              // fontSize: responsiveHeight(context, 0.022, 0.05),
             ),
           ),
-          titleSpacing: 00.0,
-          centerTitle: true,
+          titleSpacing: 40.0,
           // toolbarHeight: responsiveHeight(context, 0.072, 0.15),
           toolbarOpacity: 0.8,
           shape: const RoundedRectangleBorder(
@@ -103,7 +105,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       trailing: Switch(
                         thumbIcon: appearance,
                         value: themeProvider.darkTheme,
-                        onChanged: (value) => themeProvider.darkTheme = value,
+                        onChanged: (value) {
+                          themeProvider.darkTheme = value;
+                          showSnackbar(
+                              context,
+                              themeProvider.darkTheme
+                                  ? 'Dark mode enabled'
+                                  : 'Light mode enabled',
+                              themeProvider.darkTheme
+                                  ? Colors.white
+                                  : Colors.black);
+                        },
                       ),
                     ),
                   ),
@@ -258,8 +270,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       onTap: () {
                         Dialogs.bottomMaterialDialog(
                           msg: 'Version: 1.0.1',
-                          title: 'FoodMobie',
+                          title: 'CopOfficial',
                           context: context,
+                          color: themeProvider.darkTheme
+                              ? Colors.black
+                              : Colors.white,
                           actions: [
                             IconsButton(
                               onPressed: () {
@@ -267,7 +282,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               },
                               text: 'Check For Update',
                               iconData: Icons.update,
-                              color: Colors.teal,
+                              color: const Color.fromRGBO(79, 81, 166, 1),
                             ),
                           ],
                         );
