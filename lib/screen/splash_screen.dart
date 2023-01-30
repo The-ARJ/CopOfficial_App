@@ -1,4 +1,4 @@
-import 'package:copofficial_app/screen/home_screen.dart';
+import 'package:copofficial_app/screen/navbar.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) => const NavScreen(),
         ),
       );
     });
@@ -26,7 +26,6 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: const Color.fromRGBO(79, 81, 166, 1),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
