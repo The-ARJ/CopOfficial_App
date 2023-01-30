@@ -71,7 +71,7 @@ class _NavScreenState extends State<NavScreen> {
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
-            color: themeProvider.darkTheme ? Colors.black : Colors.white,
+            color: themeProvider.darkTheme ? Colors.black12 : Colors.white,
             borderRadius: const BorderRadius.vertical(
               top: Radius.circular(15),
             ),

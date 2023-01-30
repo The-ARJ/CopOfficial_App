@@ -95,13 +95,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     margin: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     child: ListTile(
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.color_lens,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
                       ),
                       title: Text("Appearance",
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              // fontSize: responsiveHeight(context, 0.02, 0.04),
-                              )),
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    // fontSize: responsiveHeight(context, 0.02, 0.04),
+                                    color: themeProvider.darkTheme
+                                        ? Colors.white
+                                        : const Color(0xFF4F51A6),
+                                  )),
                       trailing: Switch(
                         thumbIcon: appearance,
                         value: themeProvider.darkTheme,
@@ -123,14 +130,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     margin: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     child: ListTile(
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.notifications_active,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
                       ),
                       title: Text(
                         "Notification",
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            // fontSize: responsiveHeight(context, 0.02, 0.04),
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
+
+                                  color: themeProvider.darkTheme
+                                      ? Colors.white
+                                      : const Color(0xFF4F51A6),
+                                ),
                       ),
                       trailing: Switch(
                         thumbIcon: notification,
@@ -147,14 +162,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     margin: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     child: ListTile(
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.fingerprint,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
                       ),
                       title: Text(
                         "Biometric",
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            // fontSize: responsiveHeight(context, 0.02, 0.04),
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
+                                  color: themeProvider.darkTheme
+                                      ? Colors.white
+                                      : const Color(0xFF4F51A6),
+                                ),
                       ),
                       trailing: Switch(
                         thumbIcon: biometric,
@@ -171,17 +193,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     margin: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     child: ListTile(
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.info,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
                       ),
                       title: Text(
                         "About",
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            // fontSize: responsiveHeight(context, 0.02, 0.04),
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
+                                  color: themeProvider.darkTheme
+                                      ? Colors.white
+                                      : const Color(0xFF4F51A6),
+                                ),
                       ),
-                      trailing: const Icon(
+                      trailing: Icon(
                         Icons.arrow_forward_ios,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
                       ),
                       onTap: () {
                         Navigator.pushNamed(context, '/AboutScreen');
@@ -193,17 +225,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     margin: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     child: ListTile(
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.question_answer,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
                       ),
                       title: Text(
                         "Help and FAQs",
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            // fontSize: responsiveHeight(context, 0.02, 0.04),
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
+                                  color: themeProvider.darkTheme
+                                      ? Colors.white
+                                      : const Color(0xFF4F51A6),
+                                ),
                       ),
-                      trailing: const Icon(
+                      trailing: Icon(
                         Icons.arrow_forward_ios,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
                       ),
                       onTap: () {
                         // Navigate to FAQ screen
@@ -215,16 +257,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     margin: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     child: ListTile(
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.share,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
                       ),
                       title: Text(
                         "Share",
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            // fontSize: responsiveHeight(context, 0.02, 0.04),
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
+                                  color: themeProvider.darkTheme
+                                      ? Colors.white
+                                      : const Color(0xFF4F51A6),
+                                ),
                       ),
-                      trailing: const Icon(Icons.copy),
+                      trailing: Icon(
+                        Icons.copy,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
+                      ),
                       onTap: () {
                         Clipboard.setData(const ClipboardData(
                             text: "https://www.example.com"));
@@ -236,21 +290,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     margin: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     child: ListTile(
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.feedback,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
                       ),
                       title: Text(
                         "Feedback",
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            // fontSize: responsiveHeight(context, 0.02, 0.04),
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
+                                  color: themeProvider.darkTheme
+                                      ? Colors.white
+                                      : const Color(0xFF4F51A6),
+                                ),
                       ),
                       onTap: () {
                         // FeedbackDialog.show(context);
                         Navigator.pushNamed(context, '/FeedBack');
                       },
-                      trailing: const Icon(
+                      trailing: Icon(
                         Icons.arrow_forward_ios,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
                       ),
                     ),
                   ),
@@ -258,14 +322,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     margin: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     child: ListTile(
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.info,
+                        color: themeProvider.darkTheme
+                            ? Colors.white
+                            : const Color(0xFF4F51A6),
                       ),
                       title: Text(
                         "More Info",
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            // fontSize: responsiveHeight(context, 0.02, 0.04),
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  // fontSize: responsiveHeight(context, 0.02, 0.04),
+                                  color: themeProvider.darkTheme
+                                      ? Colors.white
+                                      : const Color(0xFF4F51A6),
+                                ),
                       ),
                       onTap: () {
                         Dialogs.bottomMaterialDialog(
