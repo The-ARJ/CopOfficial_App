@@ -1,5 +1,7 @@
 import 'package:copofficial_app/app/theme.dart';
 import 'package:copofficial_app/app/theme_service.dart';
+import 'package:copofficial_app/screen/home_screen.dart';
+import 'package:copofficial_app/screen/navbar.dart';
 import 'package:copofficial_app/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +37,10 @@ class _MyAppState extends State<MyApp> {
               title: 'Flutter Demo',
               theme: ThemeStyles.themeStatus(themeProvider.darkTheme, context),
               debugShowCheckedModeBanner: false,
-              home: const SplashScreen(),
+              routes: {
+                '/': (context) => const SplashScreen(),
+                '/Nav': (context) => const NavScreen(),
+              },
             );
           },
         ));

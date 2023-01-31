@@ -1,4 +1,4 @@
-import 'package:copofficial_app/screen/navbar.dart';
+import 'package:copofficial_app/screen/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const NavScreen(),
+          builder: (context) => const OnboardingScreen(),
         ),
       );
     });
