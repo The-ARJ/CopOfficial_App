@@ -1,4 +1,6 @@
+import 'package:copofficial_app/app/theme_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -25,6 +27,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -103,12 +106,14 @@ class DotIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
+
     return AnimatedContainer(
       height: 4,
       width: isActive ? 12 : 4,
-      decoration: const BoxDecoration(
-        color: Colors.purple,
-        borderRadius: BorderRadius.all(
+      decoration: BoxDecoration(
+        color: themeProvider.darkTheme ? Colors.white : const Color(0xFF4F51A6),
+        borderRadius: const BorderRadius.all(
           Radius.circular(12),
         ),
       ),
@@ -160,6 +165,8 @@ class OnBoardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
+
     return Column(
       children: [
         const Spacer(),
@@ -172,10 +179,10 @@ class OnBoardContent extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             title,
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium!
-                .copyWith(fontWeight: FontWeight.w500),
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: const Color(0xFF4F51A6),
+                ),
           ),
         ),
         const SizedBox(
@@ -185,6 +192,10 @@ class OnBoardContent extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             description,
+            style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? Colors.white
+                    : const Color(0xFF4F51A6)),
           ),
         ),
         const Spacer()

@@ -77,8 +77,8 @@ class _NavScreenState extends State<NavScreen> {
             ),
             boxShadow: const [
               BoxShadow(
-                blurRadius: 25,
-                color: Colors.black45,
+                spreadRadius: 0.1,
+                color: Colors.black12,
               )
             ],
           ),
