@@ -59,7 +59,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   ),
                   const Spacer(),
-                  const Spacer(),
                   SizedBox(
                     height: 60,
                     width: 60,
@@ -130,20 +129,24 @@ class Onboard {
 final List<Onboard> data = [
   Onboard(
       image: 'assets/images/onboarding1.png',
-      title: 'Find the Item you have been looking for',
-      descripition: 'Here you will see rich varities of goods'),
+      title: 'Crime Reporting',
+      descripition:
+          'Users can report crimes and suspicious activity through the app, including the option to upload photos or videos as evidence.'),
   Onboard(
       image: 'assets/images/onboarding2.png',
-      title: 'Find the Item you have been looking for',
-      descripition: 'Here you will see rich varities of goods'),
+      title: 'Community Policing',
+      descripition:
+          'The app allows users to stay informed about local crime trends and events, and to communicate with their neighbourhood police officers.'),
   Onboard(
       image: 'assets/images/onboarding3.png',
-      title: 'Find the Item you have been looking for',
-      descripition: 'Here you will see rich varities of goods'),
+      title: 'Crime Mapping',
+      descripition:
+          'The app provides a map-based interface for users to view crime incidents in their area, including the ability to filter by crime type, date, and location.'),
   Onboard(
       image: 'assets/images/onboarding4.png',
-      title: 'Find the Item you have been looking for',
-      descripition: 'Here you will see rich varities of goods'),
+      title: 'Complaints',
+      descripition:
+          'Citizens can submit complaints about the incidents which will be forwarded to the appropriate department for investigation.'),
 ];
 
 class OnBoardContent extends StatelessWidget {
@@ -165,20 +168,24 @@ class OnBoardContent extends StatelessWidget {
           height: 250,
         ),
         const Spacer(),
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: Theme.of(context)
-              .textTheme
-              .headlineMedium!
-              .copyWith(fontWeight: FontWeight.w500),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            title,
+            style: Theme.of(context)
+                .textTheme
+                .headlineMedium!
+                .copyWith(fontWeight: FontWeight.w500),
+          ),
         ),
         const SizedBox(
           height: 16,
         ),
-        Text(
-          description,
-          textAlign: TextAlign.center,
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            description,
+          ),
         ),
         const Spacer()
       ],
