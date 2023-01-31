@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 abstract class ThemeStyles {
   static ThemeData themeStatus(bool isDarkTheme, BuildContext context) {
     return ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
+        ),
         primaryColor: const Color(0xFF4F51A6),
         primarySwatch: const MaterialColor(0xFF4F51A6, {
           50: Color(0xFF4F51A6),

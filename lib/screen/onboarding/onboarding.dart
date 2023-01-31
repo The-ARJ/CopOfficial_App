@@ -39,15 +39,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   height: 45,
                   width: 100,
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF4F51A6)),
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/Nav');
-                      },
-                      child: const Text(
-                        'Skip',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      )),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF4F51A6)),
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/Welcome');
+                    },
+                    child: const Text(
+                      'Skip',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
               Expanded(
@@ -92,7 +93,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             Future.delayed(
                               const Duration(milliseconds: 500),
                               () {
-                                Navigator.pushReplacementNamed(context, '/Nav');
+                                Navigator.pushReplacementNamed(
+                                    context, '/Welcome');
                               },
                             );
                           } else {
