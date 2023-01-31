@@ -27,13 +27,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: SizedBox(
+                  height: 45,
+                  width: 100,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF4F51A6)),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, '/Nav');
+                      },
+                      child: const Text(
+                        'Skip',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      )),
+                ),
+              ),
               Expanded(
                 child: PageView.builder(
                   itemCount: data.length,
@@ -169,10 +185,12 @@ class OnBoardContent extends StatelessWidget {
 
     return Column(
       children: [
-        const Spacer(),
+        const SizedBox(
+          height: 40,
+        ),
         Image.asset(
           image,
-          height: 250,
+          height: 300,
         ),
         const Spacer(),
         Align(
