@@ -1,5 +1,5 @@
 import 'package:copofficial_app/app/theme_service.dart';
-import 'package:copofficial_app/screen/snackbar.dart';
+import 'package:copofficial_app/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -47,11 +47,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     },
   );
   _showalert() {
-    showSnackbar(context, 'Link copied to clipboard!', Colors.teal);
-  }
-
-  _theme() {
-    showSnackbar(context, 'Dark theme applied', Colors.teal);
+    showSnackbar(
+      context,
+      'Link copied to clipboard!',
+      const Color(0xFF4F51A6),
+    );
   }
 
   @override

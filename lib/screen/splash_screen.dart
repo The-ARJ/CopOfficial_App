@@ -41,23 +41,19 @@ class _SplashScreenState extends State<SplashScreen> {
                 style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
                 ),
               ),
               SizedBox(height: 8.0),
               Text(
                 "A Police Management and Crime Prevention App",
                 style: TextStyle(
-                  color: Colors.white,
                   fontSize: 16.0,
                 ),
               ),
               SizedBox(height: 16.0),
               SizedBox(
                 width: 350,
-                child: LinearProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
+                child: LinearProgressIndicator(),
               ),
             ],
           ),
